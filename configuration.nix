@@ -63,7 +63,7 @@ in
     enable = true;
     xkb = {
       layout = "us";
-      variant = "colemak";
+      # variant = "colemak";
       # capslock = control
       options = "ctrl:nocaps";
     };
