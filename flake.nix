@@ -23,6 +23,12 @@
       nix-index-database,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+      };
+    in
     {
       nixosConfigurations."gaming" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
@@ -37,6 +43,19 @@
           { programs.nix-index-database.comma.enable = true; }
           { system.configurationRevision = self.rev or "dirty"; }
         ];
+      };
+
+      apps.x86_64-linux.update = {
+        type = "app";
+        program = "${
+          pkgs.writeShellScriptBin "update" (
+            builtins.readFile (
+              pkgs.replaceVars ./.scripts/update.sh {
+                bash = "${pkgs.bash}/bin/bash";
+              }
+            )
+          )
+        }/bin/update";
       };
     };
 }
