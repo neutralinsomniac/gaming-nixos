@@ -172,6 +172,7 @@ in
 
   environment.systemPackages = with pkgs; [
     alsa-utils
+    android-tools
     (chromium.override { enableWideVine = true; })
     clang
     ethtool
@@ -186,6 +187,7 @@ in
     p7zip
     python313
     ripgrep
+    scrcpy
     tcpdump
     tmux
     unzip
