@@ -85,6 +85,11 @@ in
     };
   };
 
+  services.tailscale = {
+    enable = true;
+    openFirewall = true;
+  };
+
   # Enable sound with pipewire.
   # hardware.alsa.enablePersistence = true; # restore volume for non-pipewire-managed card settings
   security.rtkit.enable = true;
